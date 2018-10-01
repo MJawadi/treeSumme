@@ -10,32 +10,47 @@ public class SummeApp {
 		
 		SummeApp theTree = new SummeApp();
 		
-		theTree.makeNode(1, "eins");
-		theTree.makeNode(2, "zwei");
-		theTree.makeNode(3, "drei");
-		theTree.makeNode(4, "vier");
-		theTree.makeNode(5, "funf");
-		theTree.makeNode(6, "sechs");
-		theTree.makeNode(7, "sieben");
-		theTree.makeNode(8, "acht");
-		theTree.makeNode(9, "neun");
-		theTree.makeNode(10, "zehn");
+		theTree.makeNode(50, "eins");
+		theTree.makeNode(28, "zwei");
+		theTree.makeNode(32, "drei");
+		theTree.makeNode(45, "vier");
+		theTree.makeNode(64, "funf");
+		theTree.makeNode(63, "sechs");
+		theTree.makeNode(11, "sieben");
+		theTree.makeNode(20, "acht");
+		theTree.makeNode(51, "neun");
+		theTree.makeNode(15, "zehn");
 		
-		theTree.NodesSum(theTree.root);
-		System.out.println(theTree.NodesSum(theTree.root));
+		int Sum;
+		boolean Run = true;
 		
+		while(Run == true) {
+			
+			
+		}
+		
+		/*
+		Sum = theTree.root.getValue();
+		Sum = Sum + theTree.root.getLeftSubValue() + theTree.root.getRightSubValue();
+		Sum = Sum + theTree.root.leftSub.getRightSubValue() + theTree.root.leftSub.getLeftSubValue();
+		Sum = Sum + theTree.root.leftSub.getLeftSubValue();
+		*/
+		System.out.println(Sum);
+		//System.out.println("Sum of all nodes is  " + theTree.Sum(theTree.root));
 		//System.out.println("The sum of all Nodes is: " + theTree.NodesSum(sum));
 		
 	}
 
-int NodesSum(Node currentNode) {
+/*
+int Sum(Node selected) {
 	
-	if (currentNode != null ) {
-		return NodesSum(currentNode.leftSub) + NodesSum(currentNode.rightSub) + currentNode.getValue();
+	if (selected != null ) {
+		return Sum(selected.leftSub) + Sum(selected.rightSub) + selected.getValue();
 	}else {
 		return 0;
 	}
 }
+*/
 
 	
 public void makeNode(int key, String name) {
@@ -75,23 +90,3 @@ public void makeNode(int key, String name) {
 	}
 }
 }
-	
-class Node{
-		
-	int value;
-	String Name;
-		
-	Node leftSub;
-	Node rightSub;
-		
-	Node(int data, String call){
-			
-		this.value = data;
-		this.Name = call;
-	}
-	
-	int getValue() {
-		return value;
-	}
-}
-
