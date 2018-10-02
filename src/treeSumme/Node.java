@@ -1,5 +1,8 @@
 package treeSumme;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Node{
 	
 	int value;
@@ -7,12 +10,16 @@ public class Node{
 		
 	Node leftSub;
 	Node rightSub;
+	
+	Set<Node> children = new HashSet<Node>();
 		
 	Node(int data, String call){
 			
 		this.value = data;
 		this.Name = call;
 	}
+	
+	
 	
 	int getValue() {
 		return value;
@@ -24,5 +31,15 @@ public class Node{
 	
 	int getLeftSubValue() {
 		return leftSub.value;
+	}
+
+
+
+	public Set<Node> getChildren() {
+		return children;
+	}
+
+	public void addChild(Node node) {
+		this.children.add(node);
 	}
 }

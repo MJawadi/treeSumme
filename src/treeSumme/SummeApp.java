@@ -1,15 +1,16 @@
 package treeSumme;
 
+import java.util.ArrayList;
+import java.util.List;
 
 public class SummeApp {
-	
-	
+
 	Node root;
 
 	public static void main(String[] args) {
-		
+
 		SummeApp theTree = new SummeApp();
-		
+
 		theTree.makeNode(50, "eins");
 		theTree.makeNode(28, "zwei");
 		theTree.makeNode(32, "drei");
@@ -20,73 +21,96 @@ public class SummeApp {
 		theTree.makeNode(20, "acht");
 		theTree.makeNode(51, "neun");
 		theTree.makeNode(15, "zehn");
-		
-		int Sum;
-		boolean Run = true;
-		
-		while(Run == true) {
-			
-			
-		}
-		
+
 		/*
-		Sum = theTree.root.getValue();
-		Sum = Sum + theTree.root.getLeftSubValue() + theTree.root.getRightSubValue();
-		Sum = Sum + theTree.root.leftSub.getRightSubValue() + theTree.root.leftSub.getLeftSubValue();
-		Sum = Sum + theTree.root.leftSub.getLeftSubValue();
-		*/
-		System.out.println(Sum);
-		//System.out.println("Sum of all nodes is  " + theTree.Sum(theTree.root));
-		//System.out.println("The sum of all Nodes is: " + theTree.NodesSum(sum));
-		
+		 * int Sum;
+		 * 
+		 * Sum = theTree.root.getValue(); Sum = Sum + theTree.root.getLeftSubValue() +
+		 * theTree.root.getRightSubValue(); Sum = Sum +
+		 * theTree.root.leftSub.getRightSubValue() +
+		 * theTree.root.leftSub.getLeftSubValue(); Sum = Sum +
+		 * theTree.root.leftSub.getLeftSubValue();
+		 */
+		System.out.println("The recursive Sum of all nodes is " + theTree.Sum(theTree.root));
+		System.out.println("The iterative Sum of all nodes is " + theTree.SumIter(theTree.root));
+		System.out.println(theTree.Sum(theTree.root) == theTree.SumIter(theTree.root));
+		// System.out.println("The sum of all Nodes is: " + theTree.NodesSum(sum));
+
 	}
 
-/*
-int Sum(Node selected) {
-	
-	if (selected != null ) {
-		return Sum(selected.leftSub) + Sum(selected.rightSub) + selected.getValue();
-	}else {
-		return 0;
-	}
-}
-*/
+	int Sum(Node selected) {
 
-	
-public void makeNode(int key, String name) {
-	
-	Node newNode = new Node(key , name);
-	
-	if (root == null) {
-		root = newNode;
-	}else {
-		Node currentNode = root;
-		Node owner;
-		
-		while(true) {
-			owner = currentNode;
-			
-			if(key < currentNode.value) {
-				
-			  currentNode = currentNode.leftSub;
-			
-			  if (currentNode == null) {
-				  
-				  owner.leftSub = newNode;
-				  return;
-				
-			  }
-			  
-			}else {
-				currentNode = currentNode.rightSub;
-				
-				if(currentNode == null) {
-					
-					owner.rightSub = newNode;
-					return;
+		if (selected != null) {
+			int sum = 0;
+			for(Node child : selected.getChildren()) {
+				sum+=child.value;
+			}
+			sum+=Sum(selected.leftSub);
+			sum+=Sum(selected.rightSub);
+			sum+= selected.getValue();
+			return sum;
+		} else {
+			return 0;
+		}
+	}
+
+	int SumIter(Node selected) {
+		int sum = 0;
+		List<Node> stack = new ArrayList<Node>();
+		stack.add(selected);
+		while (true) {
+			if (stack.size() == 0) {
+				return sum;
+			}
+			Node current = stack.get(0);
+			stack.remove(0);
+			sum += current.value;
+			if (current.leftSub != null) {
+				stack.add(current.leftSub);
+			}
+			if (current.rightSub != null) {
+				stack.add(current.rightSub);
+			}
+			for(Node node : current.children) {
+				stack.add(node);
+			}
+		}
+	}
+
+	public void makeNode(int key, String name) {
+
+		Node newNode = new Node(key, name);
+
+		if (root == null) {
+			root = newNode;
+		} else {
+			Node currentNode = root;
+			Node owner;
+
+			while (true) {
+				owner = currentNode;
+
+				if (key < currentNode.value) {
+
+					currentNode = currentNode.leftSub;
+
+					if (currentNode == null) {
+
+						owner.leftSub = newNode;
+						return;
+
+					}
+
+				} else {
+					currentNode = currentNode.rightSub;
+
+					if (currentNode == null) {
+
+						owner.rightSub = newNode;
+						return;
+					}
 				}
 			}
 		}
 	}
-}
 }
