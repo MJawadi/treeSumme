@@ -6,7 +6,7 @@ import java.util.Set;
 public class Node{
 	
 	int value;
-	String Name;
+	String name;
 		
 	Node leftSub;
 	Node rightSub;
@@ -16,7 +16,7 @@ public class Node{
 	Node(int data, String call){
 			
 		this.value = data;
-		this.Name = call;
+		this.name = call;
 	}
 	
 	

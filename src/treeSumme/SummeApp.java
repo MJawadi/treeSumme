@@ -22,27 +22,29 @@ public class SummeApp {
 		theTree.makeNode(51, "neun");
 		theTree.makeNode(15, "zehn");
 
-		/*
-		 * int Sum;
-		 * 
-		 * Sum = theTree.root.getValue(); Sum = Sum + theTree.root.getLeftSubValue() +
-		 * theTree.root.getRightSubValue(); Sum = Sum +
-		 * theTree.root.leftSub.getRightSubValue() +
-		 * theTree.root.leftSub.getLeftSubValue(); Sum = Sum +
-		 * theTree.root.leftSub.getLeftSubValue();
-		 */
-		System.out.println("The recursive Sum of all nodes is " + theTree.Sum(theTree.root));
-		System.out.println("The iterative Sum of all nodes is " + theTree.SumIter(theTree.root));
-		System.out.println(theTree.Sum(theTree.root) == theTree.SumIter(theTree.root));
-		// System.out.println("The sum of all Nodes is: " + theTree.NodesSum(sum));
-
+		
+		//System.out.println("The recursive Sum of all nodes is " + theTree.Sum(theTree.root));
+		//System.out.println("The iterative Sum of all nodes is " + theTree.SumIter(theTree.root));
+		//System.out.println(theTree.Sum(theTree.root) == theTree.SumIter(theTree.root));
+		//System.out.println("The sum of all Nodes is: " + theTree.NodesSum(sum));
+		//System.out.println(theTree.RechnerNode(theTree.root));
+	}
+	
+	int RechnerNode(Node Top) {
+		int sum = 0;
+		if (Top != null) {
+			sum = (Top.getLeftSubValue() + Top.getRightSubValue());
+			return sum;
+		}else {
+			return 0;
+		}
 	}
 
 	int Sum(Node selected) {
 
 		if (selected != null) {
 			int sum = 0;
-			for(Node child : selected.getChildren()) {
+			for(Node child : selected.getChildren()) { // Java for-each loop
 				sum+=child.value;
 			}
 			sum+=Sum(selected.leftSub);
@@ -54,7 +56,8 @@ public class SummeApp {
 		}
 	}
 
-	int SumIter(Node selected) {
+
+	int SumIter(Node selected) { // Convert the tree to a list so we can count their value easily
 		int sum = 0;
 		List<Node> stack = new ArrayList<Node>();
 		stack.add(selected);
